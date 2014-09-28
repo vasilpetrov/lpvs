@@ -1,0 +1,14 @@
+{
+  "name": "vpetrov-lpvs",
+  "version": "0.0.1",
+  "author": "Vasil Petrov",
+  "summary": "Puppet module for deployment of lpvs",
+  "license": "Apache 2.0",
+  "source": "https://github.com/vasilpetrov/lpvs.git",
+  "project_page": "https://github.com/vasilpetrov/lpvs",
+  "issues_url": "https://github.com/vasilpetrov/lpvs/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
