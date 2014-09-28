@@ -9,71 +9,54 @@
     * [Setup requirements](#setup-requirements)
     * [Beginning with lpvs](#beginning-with-lpvs)
 4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+This module provide lpvs for ubuntu and centos. works with puppet server 3.7.1
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
+Module create directory in /opt/ and ships lpvs.pl, then installs the perl packages needed for the proper operation. 
+Also it creates a crontab for scheduled runs. 
 
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+lpvs.pl and lpvs-scanner.pl used from:
+https://github.com/lwindolf/lpvs
 
 ## Setup
 
 ### What lpvs affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+* RedHat family packages: perl-XML-LibXML perl-XML-LibXSLT perl-Crypt-SSLeay perl-LWP-Protocol-https
+* Debian family packages: libxml-libxslt-perl
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements 
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+puppet server and zombie slaves :)
 
 ### Beginning with lpvs
 
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+In order script to work you'll need internet access.
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
-
-## Reference
-
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+	include "lpvs"
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+This module works on ubuntu and centos instances  
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+Apache 2.0 License 
 
-## Release Notes/Contributors/Etc **Optional**
+Whoever wants to contribure, just let me know. 
+Module written to solve stupid package vuln update problems.
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+Optionally you could diff and mail the output to your box. /could be implemented in future versions/ 
+
+## Release Notes/Contributors
+
+Current version 0.0.1
+Developed by: Vasil Petrov
