@@ -43,6 +43,14 @@ class lpvs {
     		group  => "root",
     		mode   => 755,
 	 }
+         
+	file { "/usr/lib/ruby/vendor_ruby/facter/lpvs_is_vuln.rb":
+                        ensure => file,
+                        owner  => 'root',
+                        group  => 'root',
+                        mode   => 0644,
+                        source => 'puppet:///modules/lpvs/lpvs_is_vuln.rb',
+         }
 
 	 file { "/usr/lib/ruby/vendor_ruby/facter/lpvs_vuln_count.rb":
                         ensure => file,
