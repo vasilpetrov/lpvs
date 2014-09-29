@@ -44,21 +44,64 @@ class lpvs {
     		mode   => 755,
 	 }
          
-	file { "/usr/lib/ruby/vendor_ruby/facter/lpvs_is_vuln.rb":
-                        ensure => file,
-                        owner  => 'root',
-                        group  => 'root',
-                        mode   => 0644,
-                        source => 'puppet:///modules/lpvs/lpvs_is_vuln.rb',
+	 if $osfamily == "Debian" {
+
+                file { "/usr/lib/ruby/vendor_ruby/facter/lpvs_is_vuln.rb":
+                                ensure => file,
+                                owner  => 'root',
+                                group  => 'root',
+                                mode   => 0644,
+                                source => 'puppet:///modules/lpvs/lpvs_is_vuln.rb',
+                 }
+
+                 file { "/usr/lib/ruby/vendor_ruby/facter/lpvs_vuln_count.rb":
+                                ensure => file,
+                                owner  => 'root',
+                                group  => 'root',
+                                mode   => 0644,
+                                source => 'puppet:///modules/lpvs/lpvs_vuln_count.rb',
+                 }
+
+                package { "libxml-libxslt-perl":
+                        ensure => "installed"
+                 }
+
+         } elsif $osfamily == "RedHat" {
+
+                file { "/usr/share/ruby/vendor_ruby/facter/lpvs_is_vuln.rb":
+                                ensure => file,
+                                owner  => 'root',
+                                group  => 'root',
+                                mode   => 0644,
+                                source => 'puppet:///modules/lpvs/lpvs_is_vuln.rb',
+                 }
+
+                 file { "/usr/share/ruby/vendor_ruby/facter/lpvs_vuln_count.rb":
+                                ensure => file,
+                                owner  => 'root',
+                                group  => 'root',
+                                mode   => 0644,
+                                source => 'puppet:///modules/lpvs/lpvs_vuln_count.rb',
+                 }
+		
+                package {"perl-XML-LibXML":
+                        ensure => latest,
+                }
+
+                package {"perl-XML-LibXSLT":
+                        ensure => latest,
+                }
+
+                package { 'perl-Crypt-SSLeay':
+                        ensure => latest,
+                }
+
+                package {'perl-LWP-Protocol-https':
+                        ensure => latest,
+                }
+
          }
 
-	 file { "/usr/lib/ruby/vendor_ruby/facter/lpvs_vuln_count.rb":
-                        ensure => file,
-                        owner  => 'root',
-                        group  => 'root',
-                        mode   => 0644,
-                        source => 'puppet:///modules/lpvs/lpvs_vuln_count.rb',
-         }
 
          file { "/opt/lpvs/lpvs-scan.pl":
                         ensure => file,
@@ -68,30 +111,6 @@ class lpvs {
                         source => 'puppet:///modules/lpvs/lpvs-scan.pl',
          }
 
-	if $osfamily == "RedHat" {
-	
-		package {"perl-XML-LibXML":
-			ensure => latest,
-		}
-
-		package {"perl-XML-LibXSLT":
-			ensure => latest,
-		}
-		
-		package { 'perl-Crypt-SSLeay':
-			ensure => latest,
-		}
-		
-		package {'perl-LWP-Protocol-https':
-			ensure => latest,
-		}	
-	
-	} elsif $osfamily == "Debian" {
-
-		 package { "libxml-libxslt-perl":
-    			ensure => "installed"
-		 }	
-	}
 
 	cron {'pkg_vuln_scan':
                         command => "perl /opt/lpvs/lpvs-scan.pl -s > /opt/lpvs/scan_$hostname",
