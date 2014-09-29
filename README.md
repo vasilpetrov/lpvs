@@ -64,5 +64,5 @@ Optionally you could diff and mail the output to your box. /could be implemented
 
 ## Release Notes/Contributors
 
-Current version 0.0.1
+Current version 0.0.2
 Developed by: Vasil Petrov
