@@ -58,7 +58,7 @@ my %config = (
 	},
 	'pkg' => {
 		'deb' => {
-			'list'			=> 'dpkg -l',
+			'list'			=> 'dpkg -l | grep "ii"',
 			'query'			=> 'dpkg -p',
 			'querytoversion'	=> 'Version:\s+(\S+)'
 		},
