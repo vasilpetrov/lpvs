@@ -41,6 +41,13 @@ In order script to work you'll need internet access.
 
 ## Usage
 
+In order to install this module you'll need git
+Go to your modules folder and issue:
+
+	git clone https://github.com/vasilpetrov/lpvs.git
+
+
+
 	include "lpvs"
 
 custom facts:
