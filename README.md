@@ -46,7 +46,7 @@ Go to your modules folder and issue:
 
 	git clone https://github.com/vasilpetrov/lpvs.git
 
-
+include into your manifests/classes
 
 	include "lpvs"
 
