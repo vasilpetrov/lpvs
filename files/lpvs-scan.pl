@@ -97,12 +97,16 @@ chomp $os;
 if(-f "/etc/redhat-release") {
 	# /etc/redhat-release should have something like "CentOS release 5.x (xxx)
 	my $tmp = `cat /etc/redhat-release`;
+	
 	if($tmp =~ /^CentOS\s+release\s+/) {
-		$os = "CentOS";
-	} else {
-		print STDERR "This Redhat-based distribution is not supported! Consider hacking $0 to add support.\n";
-		exit(1);
-	}
+                $os = "CentOS";
+        } elsif ($tmp =~ /^CentOS\s+Linux\s+release\s+/) {
+                $os = "CentOS"
+        } else {
+                print STDERR "This Redhat-based distribution is not supported! Consider hacking $0 to add support.\n";
+                exit(1);
+        }
+
 }
 
 if($os eq "") {
