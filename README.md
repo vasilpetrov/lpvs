@@ -19,7 +19,7 @@ This module provide lpvs for ubuntu and centos. works with puppet server 3.7.1
 ## Module Description
 
 Module create directory in /opt/ and ships lpvs.pl, then installs the perl packages needed for the proper operation. 
-Also it creates a crontab for scheduled runs. 
+Also it creates a crontab for scheduled runs and custom facter facts for mcollective polls which count vulnerabilities and mark the system as vulnerable!
 
 lpvs.pl and lpvs-scanner.pl used from:
 https://github.com/lwindolf/lpvs
@@ -42,6 +42,12 @@ In order script to work you'll need internet access.
 ## Usage
 
 	include "lpvs"
+
+custom facts:
+
+	lpvs_is_vuln => yes/no
+	lpvs_vuln_count => 2
+
 
 ## Limitations
 
